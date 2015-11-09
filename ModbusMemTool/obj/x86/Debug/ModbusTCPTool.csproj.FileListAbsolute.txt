@@ -1,0 +1,35 @@
+C:\Documents and Settings\Пользователь\Local Settings\Application Data\Temporary Projects\ModbusTCPTool\obj\x86\Debug\ResolveAssemblyReference.cache
+C:\Documents and Settings\Пользователь\Local Settings\Application Data\Temporary Projects\ModbusTCPTool\obj\x86\Debug\ModbusTCPTool.Properties.Resources.resources
+C:\Documents and Settings\Пользователь\Local Settings\Application Data\Temporary Projects\ModbusTCPTool\obj\x86\Debug\GenerateResource.read.1.tlog
+C:\Documents and Settings\Пользователь\Local Settings\Application Data\Temporary Projects\ModbusTCPTool\obj\x86\Debug\GenerateResource.write.1.tlog
+C:\Documents and Settings\Пользователь\Local Settings\Application Data\Temporary Projects\ModbusTCPTool\bin\Debug\ModbusTCPTool.exe
+C:\Documents and Settings\Пользователь\Local Settings\Application Data\Temporary Projects\ModbusTCPTool\bin\Debug\ModbusTCPTool.pdb
+C:\Documents and Settings\Пользователь\Local Settings\Application Data\Temporary Projects\ModbusTCPTool\obj\x86\Debug\ModbusTCPTool.exe
+C:\Documents and Settings\Пользователь\Local Settings\Application Data\Temporary Projects\ModbusTCPTool\obj\x86\Debug\ModbusTCPTool.pdb
+C:\Documents and Settings\Пользователь\Local Settings\Application Data\Temporary Projects\ModbusTCPTool\obj\x86\Debug\ModbusTCPTool.MainForm.resources
+e:\_sindar\working\VS2010\ModbusTCPTool\ModbusTCPTool\obj\x86\Debug\ModbusTCPTool.exe
+e:\_sindar\working\VS2010\ModbusTCPTool\ModbusTCPTool\obj\x86\Debug\ModbusTCPTool.pdb
+e:\_sindar\working\VS2010\ModbusTCPTool\ModbusTCPTool\bin\Debug\ModbusTCPTool.exe
+e:\_sindar\working\VS2010\ModbusTCPTool\ModbusTCPTool\bin\Debug\ModbusTCPTool.pdb
+e:\_sindar\working\VS2010\ModbusTCPTool\ModbusTCPTool\obj\x86\Debug\ModbusTCPTool.MainForm.resources
+e:\_sindar\working\VS2010\ModbusTCPTool\ModbusTCPTool\obj\x86\Debug\ModbusTCPTool.Properties.Resources.resources
+e:\_sindar\working\VS2010\ModbusTCPTool\ModbusTCPTool\obj\x86\Debug\ModbusTCPTool.csproj.GenerateResource.Cache
+D:\working\VS2010\ModbusTCPTool\ModbusTCPTool\obj\x86\Debug\ModbusTCPTool.exe
+D:\working\VS2010\ModbusTCPTool\ModbusTCPTool\obj\x86\Debug\ModbusTCPTool.pdb
+D:\working\VS2010\ModbusTCPTool\ModbusTCPTool\bin\Debug\ModbusTCPTool.exe
+D:\working\VS2010\ModbusTCPTool\ModbusTCPTool\bin\Debug\ModbusTCPTool.pdb
+D:\working\VS2010\ModbusTCPTool\ModbusTCPTool\obj\x86\Debug\ResolveAssemblyReference.cache
+D:\working\VS2010\ModbusTCPTool\ModbusTCPTool\obj\x86\Debug\ModbusTCPTool.MainForm.resources
+D:\working\VS2010\ModbusTCPTool\ModbusTCPTool\obj\x86\Debug\ModbusTCPTool.Properties.Resources.resources
+D:\working\VS2010\ModbusTCPTool\ModbusTCPTool\obj\x86\Debug\GenerateResource.read.1.tlog
+D:\working\VS2010\ModbusTCPTool\ModbusTCPTool\obj\x86\Debug\GenerateResource.write.1.tlog
+d:\working\VS2012\ModbusTCPTool\ModbusTCPTool\obj\x86\Debug\ModbusTCPTool.exe
+d:\working\VS2012\ModbusTCPTool\ModbusTCPTool\obj\x86\Debug\ModbusTCPTool.pdb
+d:\working\VS2012\ModbusTCPTool\ModbusTCPTool\bin\Debug\ModbusTCPTool.exe
+d:\working\VS2012\ModbusTCPTool\ModbusTCPTool\bin\Debug\ModbusTCPTool.pdb
+d:\working\VS2012\ModbusTCPTool\ModbusTCPTool\obj\x86\Debug\ModbusTCPTool.csprojResolveAssemblyReference.cache
+d:\working\VS2012\ModbusTCPTool\ModbusTCPTool\obj\x86\Debug\ModbusTCPTool.MainForm.resources
+d:\working\VS2012\ModbusTCPTool\ModbusTCPTool\obj\x86\Debug\ModbusTCPTool.Properties.Resources.resources
+d:\working\VS2012\ModbusTCPTool\ModbusTCPTool\obj\x86\Debug\ModbusTCPTool.csproj.GenerateResource.Cache
+d:\working\VS2012\ModbusTCPTool\ModbusTCPTool\obj\x86\Debug\ModbusTCPTool.LoadingForm.resources
+D:\working\VS2012\ModbusTCPTool\ModbusTCPTool\obj\x86\Debug\ModbusTCPTool.FileSaveForm.resources
