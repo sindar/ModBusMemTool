@@ -96,7 +96,7 @@ namespace ModbusMemTool
                 }
                 catch(Exception ex)
                 {
-                    MessageBox.Show("Ответ не пришёл! " + ex.Message);
+                    //MessageBox.Show("Ответ не пришёл! " + ex.Message);
                 }
 
                 return receiveData;
@@ -157,7 +157,7 @@ namespace ModbusMemTool
                 }
                 catch (Exception ex)
                 {
-                    MessageBox.Show("Ошибка соединения!" + ex.Message);
+                    //MessageBox.Show("Ошибка соединения!" + ex.Message);
                 }
 
                 try
@@ -166,7 +166,7 @@ namespace ModbusMemTool
                 }
                 catch (Exception ex)
                 {
-                    MessageBox.Show("Ответ не пришёл! " + ex.Message);
+                    //MessageBox.Show("Ответ не пришёл! " + ex.Message);
                 }
 
                 return receiveData;

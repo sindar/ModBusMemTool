@@ -194,16 +194,12 @@ namespace ModbusMemTool
         {
             byte crc_hi;
             byte crc_lo;
-            byte n;
-            byte p = 0;
             byte j;
 
             if (len > 256U)
             {
                 return (0);
             }
-
-            n = (byte)len;
 
             crc_hi = 0xFF;   // high byte of CRC initialized
             crc_lo = 0xFF;   // low byte of CRC initialized
