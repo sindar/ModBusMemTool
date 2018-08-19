@@ -1,9 +1,0 @@
-/Users/sindar/Working/VS2012/ModbusMemTool/ModbusMemTool/obj/x86/Debug/ModbusMemTool.FileSaveForm.resources
-/Users/sindar/Working/VS2012/ModbusMemTool/ModbusMemTool/obj/x86/Debug/ModbusMemTool.LoadingForm.resources
-/Users/sindar/Working/VS2012/ModbusMemTool/ModbusMemTool/obj/x86/Debug/ModbusMemTool.MainForm.resources
-/Users/sindar/Working/VS2012/ModbusMemTool/ModbusMemTool/obj/x86/Debug/ModbusMemTool.Properties.Resources.resources
-/Users/sindar/Working/VS2012/ModbusMemTool/ModbusMemTool/bin/Debug/ModbusMemTool2.exe.config
-/Users/sindar/Working/VS2012/ModbusMemTool/ModbusMemTool/bin/Debug/ModbusMemTool2.exe.mdb
-/Users/sindar/Working/VS2012/ModbusMemTool/ModbusMemTool/bin/Debug/ModbusMemTool2.exe
-/Users/sindar/Working/VS2012/ModbusMemTool/ModbusMemTool/obj/x86/Debug/ModbusMemTool2.exe
-/Users/sindar/Working/VS2012/ModbusMemTool/ModbusMemTool/obj/x86/Debug/ModbusMemTool2.exe.mdb

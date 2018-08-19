@@ -69,7 +69,7 @@ namespace ModbusMemTool
 
             try
             {
-                FileIn = new StreamReader(Environment.CurrentDirectory + "\\modbusmemtool.cfg");
+                FileIn = new StreamReader("modbusmemtool.cfg");
             }
             catch (IOException exc)
             {
@@ -109,7 +109,7 @@ namespace ModbusMemTool
 
             try
             {
-                FileOut = new StreamWriter(Environment.CurrentDirectory + "\\modbusmemtool.cfg");
+                FileOut = new StreamWriter("modbusmemtool.cfg");
             }
             catch (IOException exc)
             {
