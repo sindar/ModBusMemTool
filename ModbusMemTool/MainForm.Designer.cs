@@ -86,7 +86,7 @@
             this.labelIP.Name = "labelIP";
             this.labelIP.Size = new System.Drawing.Size(53, 13);
             this.labelIP.TabIndex = 2;
-            this.labelIP.Text = "IP-адрес:";
+            this.labelIP.Text = "IP-address:";
             // 
             // connectButton
             // 
@@ -94,7 +94,7 @@
             this.connectButton.Name = "connectButton";
             this.connectButton.Size = new System.Drawing.Size(176, 23);
             this.connectButton.TabIndex = 3;
-            this.connectButton.Text = "Подключить";
+            this.connectButton.Text = "Connect";
             this.connectButton.UseVisualStyleBackColor = true;
             this.connectButton.Click += new System.EventHandler(this.ConnectButton_Click);
             // 
@@ -140,7 +140,7 @@
             this.ErrorLabel.Name = "ErrorLabel";
             this.ErrorLabel.Size = new System.Drawing.Size(155, 13);
             this.ErrorLabel.TabIndex = 7;
-            this.ErrorLabel.Text = "Состояние: нет подклюяения";
+            this.ErrorLabel.Text = "State: not connected";
             // 
             // RefreshTimer
             // 
@@ -164,7 +164,7 @@
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(90, 13);
             this.label1.TabIndex = 9;
-            this.label1.Text = "Адрес регистра:";
+            this.label1.Text = "Register address:";
             // 
             // UploadButton
             // 
@@ -173,7 +173,7 @@
             this.UploadButton.Name = "UploadButton";
             this.UploadButton.Size = new System.Drawing.Size(68, 65);
             this.UploadButton.TabIndex = 11;
-            this.toolTip1.SetToolTip(this.UploadButton, "Загрузка данных из файла в ПЛК");
+            this.toolTip1.SetToolTip(this.UploadButton, "Data uploading from a file into PLC");
             this.UploadButton.UseVisualStyleBackColor = true;
             this.UploadButton.Click += new System.EventHandler(this.UploadButton_Click);
             // 
@@ -184,7 +184,7 @@
             this.DownloadButton.Name = "DownloadButton";
             this.DownloadButton.Size = new System.Drawing.Size(68, 65);
             this.DownloadButton.TabIndex = 10;
-            this.toolTip1.SetToolTip(this.DownloadButton, "Выгрузка данных из ПЛК в файл");
+            this.toolTip1.SetToolTip(this.DownloadButton, "Data downloading from PLC into a file");
             this.DownloadButton.UseVisualStyleBackColor = true;
             this.DownloadButton.Click += new System.EventHandler(this.DownloadButton_Click);
             // 
@@ -194,7 +194,7 @@
             this.disconnectButton.Name = "disconnectButton";
             this.disconnectButton.Size = new System.Drawing.Size(176, 23);
             this.disconnectButton.TabIndex = 12;
-            this.disconnectButton.Text = "Отключить";
+            this.disconnectButton.Text = "Disconnect";
             this.disconnectButton.UseVisualStyleBackColor = true;
             this.disconnectButton.Click += new System.EventHandler(this.disconnectButton_Click);
             // 
@@ -205,7 +205,7 @@
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(99, 13);
             this.label2.TabIndex = 13;
-            this.label2.Text = "Кол-во регистров:";
+            this.label2.Text = "Length:";
             // 
             // RegQtyTextBox
             // 
@@ -246,7 +246,7 @@
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(60, 13);
             this.label3.TabIndex = 17;
-            this.label3.Text = "COM-порт:";
+            this.label3.Text = "COM-port:";
             // 
             // COMNameTextBox
             // 
@@ -264,7 +264,7 @@
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(58, 13);
             this.label4.TabIndex = 19;
-            this.label4.Text = "Скорость:";
+            this.label4.Text = "Speed:";
             // 
             // COMSpeedComboBox
             // 
@@ -292,16 +292,16 @@
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(58, 13);
             this.label5.TabIndex = 21;
-            this.label5.Text = "Чётность:";
+            this.label5.Text = "Oddity:";
             // 
             // ParityComboBox
             // 
             this.ParityComboBox.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.ParityComboBox.FormattingEnabled = true;
             this.ParityComboBox.Items.AddRange(new object[] {
-            "Нет",
-            "Чёт",
-            "Нечёт"});
+            "None",
+            "Even",
+            "Odd"});
             this.ParityComboBox.Location = new System.Drawing.Point(217, 122);
             this.ParityComboBox.MaxDropDownItems = 3;
             this.ParityComboBox.Name = "ParityComboBox";
@@ -315,7 +315,7 @@
             this.label6.Name = "label6";
             this.label6.Size = new System.Drawing.Size(62, 13);
             this.label6.TabIndex = 23;
-            this.label6.Text = "Стоп-биты:";
+            this.label6.Text = "Stop-bits:";
             // 
             // StopBitsNumUpDown
             // 
@@ -336,7 +336,7 @@
             this.label7.Name = "label7";
             this.label7.Size = new System.Drawing.Size(93, 13);
             this.label7.TabIndex = 25;
-            this.label7.Text = "Адрес ведомого:";
+            this.label7.Text = "Slave address:";
             // 
             // SlaveAddrTBox
             // 
@@ -359,7 +359,7 @@
             this.groupBox1.Size = new System.Drawing.Size(283, 173);
             this.groupBox1.TabIndex = 27;
             this.groupBox1.TabStop = false;
-            this.groupBox1.Text = "Параметры соединения";
+            this.groupBox1.Text = "Connection settings";
             // 
             // groupBox2
             // 
@@ -374,7 +374,7 @@
             this.groupBox2.Size = new System.Drawing.Size(179, 108);
             this.groupBox2.TabIndex = 28;
             this.groupBox2.TabStop = false;
-            this.groupBox2.Text = "Параметры запроса";
+            this.groupBox2.Text = "Query settings";
             // 
             // PollFreqTBox
             // 
@@ -393,7 +393,7 @@
             this.label8.Name = "label8";
             this.label8.Size = new System.Drawing.Size(107, 13);
             this.label8.TabIndex = 15;
-            this.label8.Text = "Период опроса(мс):";
+            this.label8.Text = "Polling period(ms)):";
             // 
             // groupBox3
             // 
@@ -404,7 +404,7 @@
             this.groupBox3.Size = new System.Drawing.Size(265, 108);
             this.groupBox3.TabIndex = 29;
             this.groupBox3.TabStop = false;
-            this.groupBox3.Text = "Выгрузка/Загрузка данных";
+            this.groupBox3.Text = "Donwload/Upload data";
             // 
             // groupBox4
             // 
@@ -413,7 +413,7 @@
             this.groupBox4.Size = new System.Drawing.Size(265, 52);
             this.groupBox4.TabIndex = 30;
             this.groupBox4.TabStop = false;
-            this.groupBox4.Text = "Состояние соединения";
+            this.groupBox4.Text = "Connection state";
             // 
             // MainForm
             // 

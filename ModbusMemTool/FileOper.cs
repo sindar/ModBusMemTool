@@ -21,10 +21,10 @@ namespace ModbusMemTool
             this.sFileName = sFileName;
         }
 
-        #region //Выгрузка данных из ПЛК
+        #region Donloading data from PLC
         public void DonwloadData(ref ModbusTCPConnection connection, ushort begin, ushort end)
         {
-            LoadingForm LoadForm = new LoadingForm("Выполняется выгрузка данных из ПЛК...", (end - begin)/100 + 1);
+            LoadingForm LoadForm = new LoadingForm("Data is downloading from PLC...", (end - begin)/100 + 1);
             LoadForm.Show();
 
             try
@@ -33,7 +33,7 @@ namespace ModbusMemTool
             }
             catch (IOException ex)
             {
-                MessageBox.Show("Ошибка создания файла!" + ex.Message);
+                MessageBox.Show("Error creating a file!" + ex.Message);
                 return;
             }
 
@@ -54,7 +54,7 @@ namespace ModbusMemTool
                     }
                     catch (IOException ex)
                     {
-                        MessageBox.Show("Ошибка записи данных в файл!" + ex.Message);
+                        MessageBox.Show("Error writing to a file!" + ex.Message);
                         dataOut.Close();
                         return;
                     }
@@ -72,7 +72,7 @@ namespace ModbusMemTool
                     }
                     catch (IOException ex)
                     {
-                        MessageBox.Show("Ошибка записи данных в файл!" + ex.Message);
+                        MessageBox.Show("Error writing to a file!" + ex.Message);
                         dataOut.Close();
                         return;
                     }
@@ -80,14 +80,14 @@ namespace ModbusMemTool
             }
 
             LoadForm.Show();
-            LoadForm.UpdateLabel("Выгрузка данных завершена.");
+            LoadForm.UpdateLabel("Data downloading is finised.");
             
             if (dataOut != null)
                 dataOut.Close();
         }
         #endregion
 
-        #region //Загрузка данных в ПЛК
+        #region Uploading data into a PLC
         public void UploadData(ref ModbusTCPConnection connection)
         {
             ushort begin, end;            
@@ -98,14 +98,14 @@ namespace ModbusMemTool
             }
             catch (IOException ex)
             {
-                MessageBox.Show("Ошибка открытия файла!" + ex.Message);
+                MessageBox.Show("Error opening a file!" + ex.Message);
                 return;
             }
 
             begin = dataIn.ReadUInt16();
             end = dataIn.ReadUInt16();
 
-            LoadingForm LoadForm = new LoadingForm("Выполняется загрузка данных в ПЛК...", (end - begin)/100 + 1);
+            LoadingForm LoadForm = new LoadingForm("Data is uploading into a PLC...", (end - begin)/100 + 1);
             LoadForm.Show();
             
             for (int i = begin; i <= end; i+=100)
@@ -121,7 +121,7 @@ namespace ModbusMemTool
                     }
                     catch (IOException ex)
                     {
-                        MessageBox.Show("Ошибка записи данных в файл!" + ex.Message);
+                        MessageBox.Show("Error reading data from a file!" + ex.Message);
                         dataIn.Close();
                         return;
                     }
@@ -137,7 +137,7 @@ namespace ModbusMemTool
                     }
                     catch (IOException ex)
                     {
-                        MessageBox.Show("Ошибка записи данных в файл!" + ex.Message);
+                        MessageBox.Show("Error reading data from a file!" + ex.Message);
                         dataIn.Close();
                         return;
                     }
@@ -145,7 +145,7 @@ namespace ModbusMemTool
             }
 
             LoadForm.Show();
-            LoadForm.UpdateLabel("Загрузка данных завершена.");
+            LoadForm.UpdateLabel("Data uploading is finised.");
             
             if (dataIn != null)
                 dataIn.Close();

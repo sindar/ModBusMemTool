@@ -44,7 +44,7 @@
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(110, 13);
             this.label1.TabIndex = 0;
-            this.label1.Text = "Начальный регистр:";
+            this.label1.Text = "First register:";
             // 
             // BeginRegTBox
             // 
@@ -60,7 +60,7 @@
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(103, 13);
             this.label2.TabIndex = 2;
-            this.label2.Text = "Конечный регистр:";
+            this.label2.Text = "Last register:";
             // 
             // EndRegTBox
             // 
@@ -76,7 +76,7 @@
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(67, 13);
             this.label3.TabIndex = 4;
-            this.label3.Text = "Имя файла:";
+            this.label3.Text = "Filename:";
             // 
             // FileNameTBox
             // 
@@ -91,7 +91,7 @@
             this.SaveBtn.Name = "SaveBtn";
             this.SaveBtn.Size = new System.Drawing.Size(75, 23);
             this.SaveBtn.TabIndex = 6;
-            this.SaveBtn.Text = "Выгрузить";
+            this.SaveBtn.Text = "Download";
             this.SaveBtn.UseVisualStyleBackColor = true;
             this.SaveBtn.Click += new System.EventHandler(this.SaveBtn_Click);
             // 

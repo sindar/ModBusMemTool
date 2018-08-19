@@ -32,7 +32,7 @@ namespace ModbusMemTool
             }
             catch (Exception ex)
             {
-                MessageBox.Show("Введите начальный и/или конечный адрес регистра из диапазона: 0-65535");
+                MessageBox.Show("Enter first and last register in range [0-65535]");
                 return;
             }
 

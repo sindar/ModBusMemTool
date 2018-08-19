@@ -5,8 +5,6 @@ using System.Net.Sockets;
 using System.Windows;
 using System.Windows.Forms;
 
-
-
 namespace ModbusMemTool
 {
     public class ModbusTCPConnection : ModBusConnection
@@ -25,7 +23,7 @@ namespace ModbusMemTool
             }
             catch(Exception ex)
             {
-                MessageBox.Show("Неправильный формат IP-адреса! " + ex.Message);
+                MessageBox.Show("Invalid IP address format! " + ex.Message);
                 return;
             }
 
@@ -38,7 +36,7 @@ namespace ModbusMemTool
             }
             catch(Exception ex)
             {
-                MessageBox.Show("Ошибка отрытия соединения! " + ex.Message);
+                MessageBox.Show("Error opening connection!" + ex.Message);
                 return;
             }
         }
@@ -56,35 +54,34 @@ namespace ModbusMemTool
                 Byte[] receiveData = new Byte[9 + number * 2];
                 Int32 numReadBytes;
 
-                //--------------------------------Готовим заявку на чтение-----------
-                //В двухбайтовых полях порядок: старший байт, младший байт
+                //-------------------------------Prepare read request-----------
+                // Byteorder: MSB, LSB
 
-                //Идентификатор обмена
+                // Transaction identifier
                 transmitData[0] = 0;
                 transmitData[1] = 0;
 
-                //Идентификатор протокола
+                // Protocol identifier
                 transmitData[2] = 0;
                 transmitData[3] = 0;
 
-                //Длина посылки
+                // Length field
                 transmitData[4] = 0;
                 transmitData[5] = 6;
 
-                transmitData[6] = 0; //Идентификатор устройства
+                transmitData[6] = 0; // Unit identifier
 
-                transmitData[7] = 0x03; //Код функции
+                transmitData[7] = 0x03; // Function code
 
-                //------Данные--------
-                //начальный регистр 
+                //------ Data bytes --------
+                // First register
                 transmitData[8] = Convert.ToByte((baseRegister & 0xFF00) >> 8);
                 transmitData[9] = Convert.ToByte(baseRegister & 0x00FF);
-                //MessageBox.Show("Начальный регистр " + transmitData[8].ToString() + "-" + transmitData[9].ToString());
-                //длина
+                //MessageBox.Show("First register" + transmitData[8].ToString() + "-" + transmitData[9].ToString());
+                // Length
                 transmitData[10] = Convert.ToByte((number & 0xFF00) >> 8);
                 transmitData[11] = Convert.ToByte(number & 0x00FF);
-
-                //--------------------------------Заявка сформированна------------
+                //--------------------------------Request is ready--------------
 
                 socket.Send(transmitData);
 
@@ -96,7 +93,7 @@ namespace ModbusMemTool
                 }
                 catch(Exception ex)
                 {
-                    //MessageBox.Show("Ответ не пришёл! " + ex.Message);
+                    //MessageBox.Show("No response! " + ex.Message);
                 }
 
                 return receiveData;
@@ -114,41 +111,40 @@ namespace ModbusMemTool
                 Int32 numReadBytes;
                 UInt16 dataLength;
 
-                //--------------------------------Готовим заявку на запись-----------
-                //В двухбайтовых полях порядок: старший байт, младший байт
+                //-------------------------------Prepare write request----------
+                // Byteorder: MSB, LSB
 
-                //Идентификатор обмена
+                // Transaction identifier
                 transmitData[0] = 0;
                 transmitData[1] = 0;
 
-                //Идентификатор протокола
+                // Protocol identifier
                 transmitData[2] = 0;
                 transmitData[3] = 0;
 
-                //Длина посылки
+                // Length field
                 dataLength = Convert.ToUInt16(7 + presetData.Length);
                 transmitData[4] = Convert.ToByte((dataLength & 0xFF00) >> 8);
                 transmitData[5] = Convert.ToByte(dataLength & 0x00FF);
 
-                transmitData[6] = 0; //Идентификатор устройства
+                transmitData[6] = 0; // Unit identifier
 
-                transmitData[7] = 0x10; //Код функции
+                transmitData[7] = 0x10; // Function code
 
-                //------Данные--------
-                //начальный регистр 
+                //------ Data bytes --------
+                // First register
                 transmitData[8] = Convert.ToByte((baseRegister & 0xFF00) >> 8);
                 transmitData[9] = Convert.ToByte(baseRegister & 0x00FF);
-                //MessageBox.Show("Начальный регистр " + transmitData[8].ToString() + "-" + transmitData[9].ToString());
-                //длина
+                //MessageBox.Show("First register" + transmitData[8].ToString() + "-" + transmitData[9].ToString());
+                // Length
                 transmitData[10] = Convert.ToByte((number & 0xFF00) >> 8);
                 transmitData[11] = Convert.ToByte(number & 0x00FF);
 
-                transmitData[12] = Convert.ToByte(presetData.Length); //Счётчик байт
+                transmitData[12] = Convert.ToByte(presetData.Length); // Bytes count
 
                 for (int i = 0; i < presetData.Length; i++)
                     transmitData[i + 13] = presetData[i];
-
-                //--------------------------------Заявка сформированна------------
+                //--------------------------------Request is ready--------------
 
                 
                 try
@@ -157,7 +153,7 @@ namespace ModbusMemTool
                 }
                 catch (Exception ex)
                 {
-                    //MessageBox.Show("Ошибка соединения!" + ex.Message);
+                    //MessageBox.Show("Connection error!" + ex.Message);
                 }
 
                 try
@@ -166,7 +162,7 @@ namespace ModbusMemTool
                 }
                 catch (Exception ex)
                 {
-                    //MessageBox.Show("Ответ не пришёл! " + ex.Message);
+                    //MessageBox.Show("No response! " + ex.Message);
                 }
 
                 return receiveData;

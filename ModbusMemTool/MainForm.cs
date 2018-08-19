@@ -32,7 +32,7 @@ namespace ModbusMemTool
         {
             InitializeComponent();
             
-            ErrorLabel.Text = "Состояние: нет соединения с ПЛК";
+            ErrorLabel.Text = "State: no connection to PLC";
 
             for (int i = 0; i < 10; i++)
             {
@@ -235,19 +235,19 @@ namespace ModbusMemTool
                     }
                     catch(Exception ex)
                     {
-                        MessageBox.Show("Ошибка открытия COM-порта!\n" + ex.Message);
+                        MessageBox.Show("Error opening COM-port!\n" + ex.Message);
                     }
                 }
                 else
                 {
-                    MessageBox.Show("Не выбран тип подключения!");
+                    MessageBox.Show("Please choose a connection type!");
                     return;
                 }
                 
             }
             catch(Exception ex)
             {
-                MessageBox.Show("Ошибка открытия соединения!");
+                MessageBox.Show("Error opening connection!");
             }
 
             try
@@ -256,15 +256,15 @@ namespace ModbusMemTool
             }
             catch
             {
-                MessageBox.Show("Ошибка соединения!");
-                ErrorLabel.Text = "Состояние: ошибка соединения";
+                MessageBox.Show("Connection error!");
+                ErrorLabel.Text = "State: connection error";
             }
 
             if (connectionState)
             {
                 PLCdataGridView.Enabled = true;
                 RefreshTimer.Enabled = true;
-                ErrorLabel.Text = "Состояние: норма";
+                ErrorLabel.Text = "State: OK";
             }
             else
                 RefreshTimer.Enabled = false;
@@ -289,7 +289,7 @@ namespace ModbusMemTool
                     }
                 }
                 else
-                    ErrorLabel.Text = "Состояние: ошибка соединения";
+                    ErrorLabel.Text = "State: error connection";
             }
         }
 
@@ -311,8 +311,8 @@ namespace ModbusMemTool
             }
             catch (Exception ex)
             {
-                MessageBox.Show("Ошибка соединения с ПЛК!" + ex.Message);
-                ErrorLabel.Text = "Состояние: ошибка соединения";
+                MessageBox.Show("Error connecting to the PLC!" + ex.Message);
+                ErrorLabel.Text = "State: connection error";
             }
 
             if (socketConnected && ConnectionMode == ModBusMode.TCP)
@@ -323,8 +323,8 @@ namespace ModbusMemTool
                 }
                 catch (Exception ex)
                 {
-                    MessageBox.Show("Ошибка соединения с ПЛК!" + ex.Message);
-                    ErrorLabel.Text = "Состояние: ошибка соединения";
+                    MessageBox.Show("Error connecting to the PLC!" + ex.Message);
+                    ErrorLabel.Text = "State: connection error";
                 }
 
                 if (PLCData != null)
@@ -369,7 +369,6 @@ namespace ModbusMemTool
                 return;
             }
 
-            //синхронная запись
             if (MBConnection.GetState())
             {
                 presetValue[0] = Convert.ToByte((Convert.ToUInt16(PLCdataGridView.CurrentCell.Value) & 0xFF00) >> 8);
@@ -407,11 +406,10 @@ namespace ModbusMemTool
                     RefreshTimer.Enabled = true;
                 }
                 else
-                    MessageBox.Show("Сначала подключитесь к ПЛК!");
+                    MessageBox.Show("Please connect to the PLC!");
             }
             else
-                MessageBox.Show("Функция доступна только при подключении через Ethernet!");
-
+                MessageBox.Show("Function is only available with Ethernet-connection!");
         }
 
         private void UploadButton_Click(object sender, EventArgs e)
@@ -426,11 +424,11 @@ namespace ModbusMemTool
                 }
                 else
                 {
-                    MessageBox.Show("Сначала подключитесь к ПЛК!");
+                    MessageBox.Show("Please connect to the PLC!");
                 }
             }
             else
-                MessageBox.Show("Функция доступна только при подключении через Ethernet!");
+               MessageBox.Show("Function is only available with Ethernet-connection!");
         }
 
         private void disconnectButton_Click(object sender, EventArgs e)
@@ -440,7 +438,7 @@ namespace ModbusMemTool
                 MBConnection.Close();
                 RefreshTimer.Enabled = false;
                 PLCdataGridView.Enabled = false;
-                ErrorLabel.Text = "Состояние: нет соединения с ПЛК";
+                ErrorLabel.Text = "State: not connected to PLC";
             }
 
         }
@@ -506,7 +504,7 @@ namespace ModbusMemTool
 
                 RefreshDataGridView(ValData);
             }
-            else //maybe here will be something in future
+            else // maybe here will be something in future
             {}
         }
 
@@ -517,7 +515,6 @@ namespace ModbusMemTool
 
         private void PLCDataGridHeadersFill()
         {
-            //Заполняем заголовки строк адресами
             for (int i = 0; i < PLCdataGridView.RowCount; i++)
                 PLCdataGridView.Rows[i].HeaderCell.Value = (baseAddress + i * 10).ToString();
         }
@@ -542,7 +539,7 @@ namespace ModbusMemTool
 }
 
 
-//--------Выводим заголовок заявки для отладки
+//--------Header for the debug
 /*for (int i = 0; i < 9; i++)
 {
     richTextBox1.Text += PLCData[i].ToString() + "--";
