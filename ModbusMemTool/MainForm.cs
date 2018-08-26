@@ -51,6 +51,7 @@ namespace ModbusMemTool
                 ParityComboBox.SelectedIndex = parityIndex;
                 StopBitsNumUpDown.Value = stopBits;
                 PollFreqTBox.Text = pollFreq.ToString();
+                RefreshTimer.Interval = Convert.ToInt32(pollFreq);
             }
             else
             {
