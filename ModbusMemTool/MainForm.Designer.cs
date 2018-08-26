@@ -404,7 +404,7 @@
             this.groupBox3.Size = new System.Drawing.Size(265, 108);
             this.groupBox3.TabIndex = 29;
             this.groupBox3.TabStop = false;
-            this.groupBox3.Text = "Donwload/Upload data";
+            this.groupBox3.Text = "Download/Upload data";
             // 
             // groupBox4
             // 

@@ -22,7 +22,7 @@ namespace ModbusMemTool
         }
 
         #region Donloading data from PLC
-        public void DonwloadData(ref ModbusTCPConnection connection, ushort begin, ushort end)
+        public void DownloadData(ref ModbusTCPConnection connection, ushort begin, ushort end)
         {
             LoadingForm LoadForm = new LoadingForm("Data is downloading from PLC...", (end - begin)/100 + 1);
             LoadForm.Show();

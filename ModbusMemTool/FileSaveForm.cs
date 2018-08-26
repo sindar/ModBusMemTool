@@ -37,7 +37,7 @@ namespace ModbusMemTool
             }
 
             FileOper file = new FileOper(FileNameTBox.Text);
-            file.DonwloadData(ref connection, beginAdr, endAdr);
+            file.DownloadData(ref connection, beginAdr, endAdr);
         }
 
         private void FileSaveForm_Load(object sender, EventArgs e)
