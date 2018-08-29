@@ -303,17 +303,22 @@ namespace ModbusMemTool
             try
             {
                 if (MBConnection.GetState())
-                    socketConnected = true;                    
+                {
+                    socketConnected = true;
+                    ErrorLabel.Text = "State: OK";
+                }
                 else
                 {
                     MBConnection.Close();
-                    //ReconnectTimer.Enabled = true;
+                    RefreshTimer.Enabled = false;
+                    MBConnection = new ModbusTCPConnection(IPTextBox.Text);
+                    RefreshTimer.Enabled = true;
                 }
             }
             catch (Exception ex)
             {
-                MessageBox.Show("Error connecting to the PLC!" + ex.Message);
-                ErrorLabel.Text = "State: connection error";
+                //MessageBox.Show("Error connecting to the PLC!" + ex.Message);
+                ErrorLabel.Text = "State: connection error, reconnectiong...";
             }
 
             if (socketConnected && ConnectionMode == ModBusMode.TCP)
@@ -321,25 +326,29 @@ namespace ModbusMemTool
                 try
                 {
                     PLCData = MBConnection.ReadHoldingRegs(baseAddress, regQuantity);
+
+                    if (PLCData != null)
+                    {
+                        ValData = new UInt16[(PLCData.Length - 9) / 2];
+
+                        for (int i = 9, j = 0; i < PLCData[8] + 8; i += 2, ++j)
+                        {
+                            ValData[j] = Convert.ToUInt16((PLCData[i] << 8) | PLCData[i + 1]);
+                        }
+                    }
+
+                    if (ValData != null)
+                        RefreshDataGridView(ValData);
                 }
                 catch (Exception ex)
                 {
-                    MessageBox.Show("Error connecting to the PLC!" + ex.Message);
-                    ErrorLabel.Text = "State: connection error";
+                    //MessageBox.Show("Error connecting to the PLC!" + ex.Message);
+                    ErrorLabel.Text = "State: connection error, reconnectiong...";
+                    MBConnection.Close();;
+                    RefreshTimer.Enabled = false;
+                    MBConnection = new ModbusTCPConnection(IPTextBox.Text);
+                    RefreshTimer.Enabled = true;
                 }
-
-                if (PLCData != null)
-                {
-                    ValData = new UInt16[(PLCData.Length - 9) / 2];
-
-                    for (int i = 9, j = 0; i < PLCData[8] + 8; i += 2, ++j)
-                    {
-                        ValData[j] = Convert.ToUInt16((PLCData[i] << 8) | PLCData[i + 1]);
-                    }
-                }
-
-                if (ValData != null)
-                    RefreshDataGridView(ValData);
             }
 
             if (socketConnected && ConnectionMode == ModBusMode.RTU)
@@ -383,7 +392,14 @@ namespace ModbusMemTool
 
         private void ReconnectTimer_Tick(object sender, EventArgs e)
         {
-            MBConnection = new ModbusTCPConnection(IPTextBox.Text);
+            try 
+            {
+                MBConnection = new ModbusTCPConnection(IPTextBox.Text);
+            }
+            catch (Exception ex)
+            {
+                RefreshTimer.Enabled = false;
+            }
             ReconnectTimer.Enabled = false;
         }
 
