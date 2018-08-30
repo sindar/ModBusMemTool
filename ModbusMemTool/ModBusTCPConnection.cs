@@ -23,7 +23,8 @@ namespace ModbusMemTool
             }
             catch(Exception ex)
             {
-                MessageBox.Show("Invalid IP address format! " + ex.Message);
+                //MessageBox.Show("Invalid IP address format! " + ex.Message);
+                Console.WriteLine("Invalid IP address format! " + ex.Message);
                 return;
             }
 
@@ -36,7 +37,8 @@ namespace ModbusMemTool
             }
             catch(Exception ex)
             {
-                MessageBox.Show("Error opening connection!" + ex.Message);
+                //MessageBox.Show("Error opening connection!" + ex.Message);
+                Console.WriteLine("Error opening connection!" + ex.Message);
                 return;
             }
         }

@@ -22,7 +22,7 @@ namespace ModbusMemTool
         string sCOMSpeed;
         byte parityIndex;
         byte stopBits;
-        UInt32 pollFreq;
+        UInt32 pollPeriod;
         enum ModBusMode { TCP, RTU };
         ModBusMode ConnectionMode;
         bool RTUResponseWait = false;
@@ -50,8 +50,8 @@ namespace ModbusMemTool
                 COMSpeedComboBox.Text = sCOMSpeed;
                 ParityComboBox.SelectedIndex = parityIndex;
                 StopBitsNumUpDown.Value = stopBits;
-                PollFreqTBox.Text = pollFreq.ToString();
-                RefreshTimer.Interval = Convert.ToInt32(pollFreq);
+                PollPeriodTBox.Text = pollPeriod.ToString();
+                RefreshTimer.Interval = Convert.ToInt32(pollPeriod);
             }
             else
             {
@@ -85,10 +85,10 @@ namespace ModbusMemTool
                 sCOMSpeed = (Convert.ToUInt32(FileIn.ReadLine())).ToString();
                 parityIndex = (Convert.ToByte(FileIn.ReadLine()));
                 stopBits = (Convert.ToByte(FileIn.ReadLine()));
-                pollFreq = (Convert.ToUInt32(FileIn.ReadLine()));
+                pollPeriod = (Convert.ToUInt32(FileIn.ReadLine()));
 
                 if ((AgentAddress == null) || (sSlaveAddr == null) || (sCOMName == null) || (sCOMSpeed == null) ||
-                    (parityIndex == null) || (stopBits == null) || (pollFreq == null))
+                    (parityIndex == null) || (stopBits == null) || (pollPeriod == null))
                     return false;
                 
             }
@@ -125,7 +125,7 @@ namespace ModbusMemTool
                 FileOut.WriteLine(COMSpeedComboBox.Text);
                 FileOut.WriteLine(ParityComboBox.SelectedIndex.ToString());
                 FileOut.WriteLine(StopBitsNumUpDown.Value.ToString());
-                FileOut.WriteLine(PollFreqTBox.Text);
+                FileOut.WriteLine(PollPeriodTBox.Text);
             }
             catch (IOException exc)
             {
@@ -387,20 +387,6 @@ namespace ModbusMemTool
                 MBConnection.PresetMultipleRegs((UInt16)(baseAddress + PLCdataGridView.CurrentCell.RowIndex * 10 + PLCdataGridView.CurrentCell.ColumnIndex), 1, presetValue);
                 RefreshTimer.Enabled = true;
             }
-
-        }
-
-        private void ReconnectTimer_Tick(object sender, EventArgs e)
-        {
-            try 
-            {
-                MBConnection = new ModbusTCPConnection(IPTextBox.Text);
-            }
-            catch (Exception ex)
-            {
-                RefreshTimer.Enabled = false;
-            }
-            ReconnectTimer.Enabled = false;
         }
 
         private void openFileDialog1_FileOk(object sender, System.ComponentModel.CancelEventArgs e)
@@ -536,18 +522,18 @@ namespace ModbusMemTool
                 PLCdataGridView.Rows[i].HeaderCell.Value = (baseAddress + i * 10).ToString();
         }
 
-        private void PollFreqTBox_KeyPress(object sender, KeyPressEventArgs e)
+        private void PollPeriodTBox_KeyPress(object sender, KeyPressEventArgs e)
         {
             if (e.KeyChar == '\r')
             {
                 try
                 {
-                    RefreshTimer.Interval = Convert.ToInt32(PollFreqTBox.Text);
+                    RefreshTimer.Interval = Convert.ToInt32(PollPeriodTBox.Text);
                 }
                 catch
                 {
                     RefreshTimer.Interval = 10;
-                    PollFreqTBox.Text = "10";
+                    PollPeriodTBox.Text = "10";
                 }
             }
         }

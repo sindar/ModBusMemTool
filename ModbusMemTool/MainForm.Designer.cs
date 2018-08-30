@@ -37,7 +37,6 @@
             this.MBaddressTextBox = new System.Windows.Forms.TextBox();
             this.ErrorLabel = new System.Windows.Forms.Label();
             this.RefreshTimer = new System.Windows.Forms.Timer(this.components);
-            this.ReconnectTimer = new System.Windows.Forms.Timer(this.components);
             this.openFileDialog1 = new System.Windows.Forms.OpenFileDialog();
             this.label1 = new System.Windows.Forms.Label();
             this.UploadButton = new System.Windows.Forms.Button();
@@ -60,7 +59,7 @@
             this._serialPort = new System.IO.Ports.SerialPort(this.components);
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
-            this.PollFreqTBox = new System.Windows.Forms.TextBox();
+            this.PollPeriodTBox = new System.Windows.Forms.TextBox();
             this.label8 = new System.Windows.Forms.Label();
             this.toolTip1 = new System.Windows.Forms.ToolTip(this.components);
             this.groupBox3 = new System.Windows.Forms.GroupBox();
@@ -146,11 +145,6 @@
             // 
             this.RefreshTimer.Interval = 10;
             this.RefreshTimer.Tick += new System.EventHandler(this.RefreshTimer_Tick);
-            // 
-            // ReconnectTimer
-            // 
-            this.ReconnectTimer.Interval = 2000;
-            this.ReconnectTimer.Tick += new System.EventHandler(this.ReconnectTimer_Tick);
             // 
             // openFileDialog1
             // 
@@ -363,7 +357,7 @@
             // 
             // groupBox2
             // 
-            this.groupBox2.Controls.Add(this.PollFreqTBox);
+            this.groupBox2.Controls.Add(this.PollPeriodTBox);
             this.groupBox2.Controls.Add(this.label8);
             this.groupBox2.Controls.Add(this.label2);
             this.groupBox2.Controls.Add(this.MBaddressTextBox);
@@ -376,15 +370,15 @@
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "Query settings";
             // 
-            // PollFreqTBox
+            // PollPeriodTBox
             // 
-            this.PollFreqTBox.Location = new System.Drawing.Point(123, 85);
-            this.PollFreqTBox.MaxLength = 5;
-            this.PollFreqTBox.Name = "PollFreqTBox";
-            this.PollFreqTBox.Size = new System.Drawing.Size(50, 20);
-            this.PollFreqTBox.TabIndex = 16;
-            this.PollFreqTBox.Text = "10";
-            this.PollFreqTBox.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.PollFreqTBox_KeyPress);
+            this.PollPeriodTBox.Location = new System.Drawing.Point(123, 85);
+            this.PollPeriodTBox.MaxLength = 5;
+            this.PollPeriodTBox.Name = "PollPeriodTBox";
+            this.PollPeriodTBox.Size = new System.Drawing.Size(50, 20);
+            this.PollPeriodTBox.TabIndex = 16;
+            this.PollPeriodTBox.Text = "10";
+            this.PollPeriodTBox.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.PollPeriodTBox_KeyPress);
             // 
             // label8
             // 
@@ -469,7 +463,6 @@
         private System.Windows.Forms.TextBox MBaddressTextBox;
         private System.Windows.Forms.Label ErrorLabel;
         private System.Windows.Forms.Timer RefreshTimer;
-        private System.Windows.Forms.Timer ReconnectTimer;
         private System.Windows.Forms.OpenFileDialog openFileDialog1;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Button DownloadButton;
@@ -492,7 +485,7 @@
         private System.IO.Ports.SerialPort _serialPort;
         private System.Windows.Forms.GroupBox groupBox1;
         private System.Windows.Forms.GroupBox groupBox2;
-        private System.Windows.Forms.TextBox PollFreqTBox;
+        private System.Windows.Forms.TextBox PollPeriodTBox;
         private System.Windows.Forms.Label label8;
         private System.Windows.Forms.ToolTip toolTip1;
         private System.Windows.Forms.GroupBox groupBox3;
