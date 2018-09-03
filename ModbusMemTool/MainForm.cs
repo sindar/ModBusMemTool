@@ -26,7 +26,8 @@ namespace ModbusMemTool
         enum ModBusMode { TCP, RTU };
         ModBusMode ConnectionMode;
         bool RTUResponseWait = false;
-        UInt16 ADUExpectedSize = 0; 
+        UInt16 ADUExpectedSize = 0;
+        byte readFunc;
 
         public MainForm()
         {
@@ -62,6 +63,8 @@ namespace ModbusMemTool
             baseAddress = 0;
             regQuantity = 100;
             MBTCPRadButton.Checked = true;
+            readFunc = 0x3;
+            funcCodeRdBtn3.Checked = true;
         }
 
         public bool ReadConfigFile()
@@ -325,7 +328,7 @@ namespace ModbusMemTool
             {
                 try
                 {
-                    PLCData = MBConnection.ReadHoldingRegs(baseAddress, regQuantity);
+                    PLCData = MBConnection.ReadHoldingAndInputRegs(baseAddress, regQuantity, readFunc);
 
                     if (PLCData != null)
                     {
@@ -353,7 +356,7 @@ namespace ModbusMemTool
 
             if (socketConnected && ConnectionMode == ModBusMode.RTU)
             {
-                PLCData = MBConnection.ReadHoldingRegs(baseAddress, regQuantity);
+                PLCData = MBConnection.ReadHoldingAndInputRegs(baseAddress, regQuantity, readFunc);
                 ADUExpectedSize = (UInt16)(regQuantity * 2 + 5);
             }
         }
@@ -367,25 +370,32 @@ namespace ModbusMemTool
 
         private void PLCdataGridView_CellEndEdit(object sender, DataGridViewCellEventArgs e)
         {
-            Byte[] presetValue = new Byte[2];
+            if(readFunc == 0x3)
+            {
+                Byte[] presetValue = new Byte[2];
 
-            try
-            {
-                Convert.ToUInt16(PLCdataGridView.CurrentCell.Value);
-            }
-            catch
-            {
-                PLCdataGridView.CurrentCell.Value = 0;
-                return;
-            }
+                try
+                {
+                    Convert.ToUInt16(PLCdataGridView.CurrentCell.Value);
+                }
+                catch
+                {
+                    PLCdataGridView.CurrentCell.Value = 0;
+                    return;
+                }
 
-            if (MBConnection.GetState())
+                if (MBConnection.GetState())
+                {
+                    presetValue[0] = Convert.ToByte((Convert.ToUInt16(PLCdataGridView.CurrentCell.Value) & 0xFF00) >> 8);
+                    presetValue[1] = Convert.ToByte(Convert.ToUInt16(PLCdataGridView.CurrentCell.Value) & 0x00FF);
+                    RefreshTimer.Enabled = false;
+                    MBConnection.PresetMultipleRegs((UInt16)(baseAddress + PLCdataGridView.CurrentCell.RowIndex * 10 + PLCdataGridView.CurrentCell.ColumnIndex), 1, presetValue);
+                    RefreshTimer.Enabled = true;
+                }
+            }
+            else
             {
-                presetValue[0] = Convert.ToByte((Convert.ToUInt16(PLCdataGridView.CurrentCell.Value) & 0xFF00) >> 8);
-                presetValue[1] = Convert.ToByte(Convert.ToUInt16(PLCdataGridView.CurrentCell.Value) & 0x00FF);
-                RefreshTimer.Enabled = false;
-                MBConnection.PresetMultipleRegs((UInt16)(baseAddress + PLCdataGridView.CurrentCell.RowIndex * 10 + PLCdataGridView.CurrentCell.ColumnIndex), 1, presetValue);
-                RefreshTimer.Enabled = true;
+                MessageBox.Show("Cannot write to Input registers!");
             }
         }
 
@@ -538,6 +548,19 @@ namespace ModbusMemTool
             }
         }
 
+        private void funcCodeRdBtn_CheckedChanged(object sender, EventArgs e)
+        {
+            if (funcCodeRdBtn3.Checked)
+                readFunc = 0x3;
+            else if (funcCodeRdBtn4.Checked)
+                readFunc = 0x4;
+            else
+            {
+                readFunc = 0x3;
+                funcCodeRdBtn3.Checked = true;
+            }
+                
+        }
     }
 }
 

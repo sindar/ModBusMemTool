@@ -31,7 +31,9 @@ namespace ModbusMemTool
             _serialPort.Close();
         }
 
-        public override Byte[] ReadHoldingRegs(UInt16 baseRegister, UInt16 number)
+        public override Byte[] ReadHoldingAndInputRegs(UInt16 baseRegister, 
+                                                       UInt16 number,
+                                                       byte funcCode)
         {
             if (_serialPort.IsOpen)
             {
@@ -44,7 +46,7 @@ namespace ModbusMemTool
                 //Slave address
                 transmitData[0] = slaveAddress;
                 //Function code
-                transmitData[1] = 0x03;
+                transmitData[1] = funcCode;
 
                 //------Data--------
                 //First register

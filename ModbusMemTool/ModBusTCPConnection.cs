@@ -48,7 +48,9 @@ namespace ModbusMemTool
             return socket.Connected;
         }
 
-        public override Byte[] ReadHoldingRegs(UInt16 baseRegister, UInt16 number)
+        public override Byte[] ReadHoldingAndInputRegs(UInt16 baseRegister, 
+                                                       UInt16 number,
+                                                       byte funcCode)
         {
             if (socket.Connected)
             {
@@ -73,7 +75,7 @@ namespace ModbusMemTool
 
                 transmitData[6] = 0; // Unit identifier
 
-                transmitData[7] = 0x03; // Function code
+                transmitData[7] = funcCode; // Function code
 
                 //------ Data bytes --------
                 // First register

@@ -44,7 +44,7 @@ namespace ModbusMemTool
             {
                 if (i <= end - 99)
                 {
-                    buffer = connection.ReadHoldingRegs(i, 100);
+                    buffer = connection.ReadHoldingAndInputRegs(i, 100, 0x3);
 
                     try
                     {
@@ -62,7 +62,7 @@ namespace ModbusMemTool
                 else
                 {
                 
-                    buffer = connection.ReadHoldingRegs(i, (ushort)(end - i + 1));
+                    buffer = connection.ReadHoldingAndInputRegs(i, (ushort)(end - i + 1), 0x3);
                     
                     try
                     {
