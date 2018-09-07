@@ -11,7 +11,8 @@ namespace ModbusMemTool
     {
         Socket socket;
         EndPoint endPoint;
-        
+        ushort transactionID = 0;
+
         public ModbusTCPConnection(string sAddress)
         {
             UInt16 Port = 502;
@@ -62,8 +63,9 @@ namespace ModbusMemTool
                 // Byteorder: MSB, LSB
 
                 // Transaction identifier
-                transmitData[0] = 0;
-                transmitData[1] = 0;
+                transmitData[0] = Convert.ToByte((transactionID & 0xFF00) >> 8);
+                transmitData[1] = Convert.ToByte(transactionID & 0x00FF);
+                ++transactionID;
 
                 // Protocol identifier
                 transmitData[2] = 0;
@@ -119,8 +121,9 @@ namespace ModbusMemTool
                 // Byteorder: MSB, LSB
 
                 // Transaction identifier
-                transmitData[0] = 0;
-                transmitData[1] = 0;
+                transmitData[0] = Convert.ToByte((transactionID & 0xFF00) >> 8);
+                transmitData[1] = Convert.ToByte(transactionID & 0x00FF);
+                ++transactionID;
 
                 // Protocol identifier
                 transmitData[2] = 0;
