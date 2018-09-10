@@ -29,6 +29,8 @@ namespace ModbusMemTool
         UInt16 ADUExpectedSize = 0;
         byte readFunc;
 
+        delegate Int32 radixConv(string str);
+
         public MainForm()
         {
             InitializeComponent();
@@ -281,6 +283,8 @@ namespace ModbusMemTool
             {
                 if (PLCData != null)
                 {
+                    string sVal = "";
+
                     for (int i = 0, j = 0, k = 0; i < PLCData.Length; ++k, ++i)
                     {
                         if (k > 9)
@@ -289,7 +293,23 @@ namespace ModbusMemTool
                             ++j;
                         }
 
-                        PLCdataGridView[k, j].Value = PLCData[i];
+                        try
+                        {
+                            if (decRadBtn.Checked)
+                                sVal = PLCData[i].ToString();
+                            else if (hexRadBtn.Checked)
+                                sVal = Convert.ToString(PLCData[i], 16);
+                            else if (binRadBtn.Checked)
+                                sVal = Convert.ToString(PLCData[i], 2);
+                            else
+                                sVal = PLCData[i].ToString();
+                        }
+                        catch(Exception ex)
+                        {
+                            
+                        }
+
+                        PLCdataGridView[k, j].Value = sVal;
                     }
                 }
                 else
@@ -372,11 +392,60 @@ namespace ModbusMemTool
         {
             if(readFunc == 0x3)
             {
-                Byte[] presetValue = new Byte[2];
+                UInt16 u16PresetValue;
+                Byte[] bytePresetValue = new Byte[2];
+                string sPresetValue = PLCdataGridView.CurrentCell.Value.ToString();
 
                 try
                 {
-                    Convert.ToUInt16(PLCdataGridView.CurrentCell.Value);
+                    if (decRadBtn.Checked)
+                        u16PresetValue = Convert.ToUInt16(sPresetValue);
+                    else if (hexRadBtn.Checked)
+                        u16PresetValue = UInt16.Parse(sPresetValue,
+                                                      System.Globalization.NumberStyles.HexNumber);
+                    else if (binRadBtn.Checked)
+                    {
+                        radixConv binToDec = (binStr) =>
+                        {
+                            Int32 val = 0;
+
+                            for (int i = 0; i < binStr.Length; i++)
+                            {
+                                if (binStr[i] == '0' || binStr[i] == '1')
+                                {
+                                    Int32 ch = Convert.ToInt32(binStr[i].ToString());
+                                    Int32 pow = Convert.ToInt32((binStr.Length - 1) - i);
+                                    val += Convert.ToInt32(Math.Pow(2, pow) * ch);
+                                }
+                                else
+                                {
+                                    val = -1;
+                                    break;
+                                }
+                                    
+                            }
+                            return val;
+                        };
+                        Int32 tmp = binToDec(sPresetValue);
+                        if (tmp != -1)
+                            u16PresetValue = Convert.ToUInt16(tmp);
+                        else
+                            return;
+                    }
+                    else
+                        u16PresetValue = Convert.ToUInt16(sPresetValue);
+
+
+                    if (MBConnection.GetState())
+                    {
+                        ushort baseRegister;
+                        bytePresetValue[0] = Convert.ToByte((u16PresetValue & 0xFF00) >> 8);
+                        bytePresetValue[1] = Convert.ToByte(u16PresetValue & 0x00FF);
+                        RefreshTimer.Enabled = false;
+                        baseRegister = (UInt16)(baseAddress + PLCdataGridView.CurrentCell.RowIndex * 10 + PLCdataGridView.CurrentCell.ColumnIndex);
+                        MBConnection.PresetMultipleRegs(baseRegister, 1, bytePresetValue);
+                        RefreshTimer.Enabled = true;
+                    }
                 }
                 catch
                 {
@@ -384,14 +453,6 @@ namespace ModbusMemTool
                     return;
                 }
 
-                if (MBConnection.GetState())
-                {
-                    presetValue[0] = Convert.ToByte((Convert.ToUInt16(PLCdataGridView.CurrentCell.Value) & 0xFF00) >> 8);
-                    presetValue[1] = Convert.ToByte(Convert.ToUInt16(PLCdataGridView.CurrentCell.Value) & 0x00FF);
-                    RefreshTimer.Enabled = false;
-                    MBConnection.PresetMultipleRegs((UInt16)(baseAddress + PLCdataGridView.CurrentCell.RowIndex * 10 + PLCdataGridView.CurrentCell.ColumnIndex), 1, presetValue);
-                    RefreshTimer.Enabled = true;
-                }
             }
             else
             {

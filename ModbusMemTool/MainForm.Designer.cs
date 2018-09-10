@@ -67,10 +67,15 @@
             this.toolTip1 = new System.Windows.Forms.ToolTip(this.components);
             this.groupBox3 = new System.Windows.Forms.GroupBox();
             this.groupBox4 = new System.Windows.Forms.GroupBox();
+            this.radixGrpBox = new System.Windows.Forms.GroupBox();
+            this.decRadBtn = new System.Windows.Forms.RadioButton();
+            this.hexRadBtn = new System.Windows.Forms.RadioButton();
+            this.binRadBtn = new System.Windows.Forms.RadioButton();
             ((System.ComponentModel.ISupportInitialize)(this.PLCdataGridView)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.StopBitsNumUpDown)).BeginInit();
             this.groupBox2.SuspendLayout();
             this.groupBox3.SuspendLayout();
+            this.radixGrpBox.SuspendLayout();
             this.SuspendLayout();
             // 
             // IPTextBox
@@ -102,7 +107,7 @@
             // 
             // richTextBox1
             // 
-            this.richTextBox1.Location = new System.Drawing.Point(8, 433);
+            this.richTextBox1.Location = new System.Drawing.Point(8, 493);
             this.richTextBox1.Name = "richTextBox1";
             this.richTextBox1.Size = new System.Drawing.Size(754, 58);
             this.richTextBox1.TabIndex = 4;
@@ -116,12 +121,12 @@
             this.PLCdataGridView.AutoSizeRowsMode = System.Windows.Forms.DataGridViewAutoSizeRowsMode.AllCells;
             this.PLCdataGridView.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.PLCdataGridView.Enabled = false;
-            this.PLCdataGridView.Location = new System.Drawing.Point(8, 187);
+            this.PLCdataGridView.Location = new System.Drawing.Point(8, 234);
             this.PLCdataGridView.MultiSelect = false;
             this.PLCdataGridView.Name = "PLCdataGridView";
             this.PLCdataGridView.RowHeadersWidthSizeMode = System.Windows.Forms.DataGridViewRowHeadersWidthSizeMode.AutoSizeToAllHeaders;
             this.PLCdataGridView.RowTemplate.Resizable = System.Windows.Forms.DataGridViewTriState.False;
-            this.PLCdataGridView.Size = new System.Drawing.Size(754, 240);
+            this.PLCdataGridView.Size = new System.Drawing.Size(754, 253);
             this.PLCdataGridView.TabIndex = 5;
             this.PLCdataGridView.CellEndEdit += new System.Windows.Forms.DataGridViewCellEventHandler(this.PLCdataGridView_CellEndEdit);
             // 
@@ -448,11 +453,56 @@
             this.groupBox4.TabStop = false;
             this.groupBox4.Text = "Connection state";
             // 
+            // radixGrpBox
+            // 
+            this.radixGrpBox.Controls.Add(this.binRadBtn);
+            this.radixGrpBox.Controls.Add(this.hexRadBtn);
+            this.radixGrpBox.Controls.Add(this.decRadBtn);
+            this.radixGrpBox.Location = new System.Drawing.Point(8, 187);
+            this.radixGrpBox.Name = "radixGrpBox";
+            this.radixGrpBox.Size = new System.Drawing.Size(283, 41);
+            this.radixGrpBox.TabIndex = 31;
+            this.radixGrpBox.TabStop = false;
+            this.radixGrpBox.Text = "Radix";
+            // 
+            // decRadBtn
+            // 
+            this.decRadBtn.AutoSize = true;
+            this.decRadBtn.Checked = true;
+            this.decRadBtn.Location = new System.Drawing.Point(6, 18);
+            this.decRadBtn.Name = "decRadBtn";
+            this.decRadBtn.Size = new System.Drawing.Size(45, 17);
+            this.decRadBtn.TabIndex = 0;
+            this.decRadBtn.TabStop = true;
+            this.decRadBtn.Text = "Dec";
+            this.decRadBtn.UseVisualStyleBackColor = true;
+            // 
+            // hexRadBtn
+            // 
+            this.hexRadBtn.AutoSize = true;
+            this.hexRadBtn.Location = new System.Drawing.Point(57, 18);
+            this.hexRadBtn.Name = "hexRadBtn";
+            this.hexRadBtn.Size = new System.Drawing.Size(44, 17);
+            this.hexRadBtn.TabIndex = 1;
+            this.hexRadBtn.Text = "Hex";
+            this.hexRadBtn.UseVisualStyleBackColor = true;
+            // 
+            // binRadBtn
+            // 
+            this.binRadBtn.AutoSize = true;
+            this.binRadBtn.Location = new System.Drawing.Point(102, 18);
+            this.binRadBtn.Name = "binRadBtn";
+            this.binRadBtn.Size = new System.Drawing.Size(40, 17);
+            this.binRadBtn.TabIndex = 2;
+            this.binRadBtn.Text = "Bin";
+            this.binRadBtn.UseVisualStyleBackColor = true;
+            // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(774, 503);
+            this.ClientSize = new System.Drawing.Size(774, 563);
+            this.Controls.Add(this.radixGrpBox);
             this.Controls.Add(this.groupBox2);
             this.Controls.Add(this.SlaveAddrTBox);
             this.Controls.Add(this.label7);
@@ -487,6 +537,8 @@
             this.groupBox2.ResumeLayout(false);
             this.groupBox2.PerformLayout();
             this.groupBox3.ResumeLayout(false);
+            this.radixGrpBox.ResumeLayout(false);
+            this.radixGrpBox.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -532,6 +584,10 @@
         private System.Windows.Forms.RadioButton funcCodeRdBtn4;
         private System.Windows.Forms.RadioButton funcCodeRdBtn3;
         private System.Windows.Forms.Label label9;
+        private System.Windows.Forms.GroupBox radixGrpBox;
+        private System.Windows.Forms.RadioButton binRadBtn;
+        private System.Windows.Forms.RadioButton hexRadBtn;
+        private System.Windows.Forms.RadioButton decRadBtn;
     }
 }
 
