@@ -24,7 +24,6 @@ namespace ModbusMemTool
             }
             catch(Exception ex)
             {
-                //MessageBox.Show("Invalid IP address format! " + ex.Message);
                 Console.WriteLine("Invalid IP address format! " + ex.Message);
                 return;
             }
@@ -38,7 +37,6 @@ namespace ModbusMemTool
             }
             catch(Exception ex)
             {
-                //MessageBox.Show("Error opening connection!" + ex.Message);
                 Console.WriteLine("Error opening connection!" + ex.Message);
                 return;
             }
@@ -83,7 +81,6 @@ namespace ModbusMemTool
                 // First register
                 transmitData[8] = Convert.ToByte((baseRegister & 0xFF00) >> 8);
                 transmitData[9] = Convert.ToByte(baseRegister & 0x00FF);
-                //MessageBox.Show("First register" + transmitData[8].ToString() + "-" + transmitData[9].ToString());
                 // Length
                 transmitData[10] = Convert.ToByte((number & 0xFF00) >> 8);
                 transmitData[11] = Convert.ToByte(number & 0x00FF);
@@ -99,7 +96,7 @@ namespace ModbusMemTool
                 }
                 catch(Exception ex)
                 {
-                    //MessageBox.Show("No response! " + ex.Message);
+                    Console.WriteLine("No response! " + ex.Message);
                 }
 
                 return receiveData;
@@ -142,7 +139,6 @@ namespace ModbusMemTool
                 // First register
                 transmitData[8] = Convert.ToByte((baseRegister & 0xFF00) >> 8);
                 transmitData[9] = Convert.ToByte(baseRegister & 0x00FF);
-                //MessageBox.Show("First register" + transmitData[8].ToString() + "-" + transmitData[9].ToString());
                 // Length
                 transmitData[10] = Convert.ToByte((number & 0xFF00) >> 8);
                 transmitData[11] = Convert.ToByte(number & 0x00FF);
@@ -160,7 +156,7 @@ namespace ModbusMemTool
                 }
                 catch (Exception ex)
                 {
-                    //MessageBox.Show("Connection error!" + ex.Message);
+                    Console.WriteLine("Connection error!" + ex.Message);
                 }
 
                 try
@@ -169,7 +165,7 @@ namespace ModbusMemTool
                 }
                 catch (Exception ex)
                 {
-                    //MessageBox.Show("No response! " + ex.Message);
+                    Console.WriteLine("No response! " + ex.Message);
                 }
 
                 return receiveData;
