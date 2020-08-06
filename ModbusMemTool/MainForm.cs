@@ -67,6 +67,8 @@ namespace ModbusMemTool
             MBTCPRadButton.Checked = true;
             readFunc = 0x3;
             funcCodeRdBtn3.Checked = true;
+
+            PLCDataGridHeadersFill();
         }
 
         public bool ReadConfigFile()
